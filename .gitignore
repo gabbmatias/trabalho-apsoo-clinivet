@@ -1,0 +1,6 @@
+#Folders
+out
+
+#OS Files
+.DS_Store
+desktop.ini
