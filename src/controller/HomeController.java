@@ -1,8 +1,8 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 
-public class Home {
+public class HomeController {
 
     @FXML
     private void initialize() {
