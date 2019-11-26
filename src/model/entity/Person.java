@@ -3,7 +3,7 @@ package model.entity;
 public class Person {
 
     String cpf;
-    String nome;
+    String name;
     String email;
     String cellPhone;
     String homePhone;
@@ -15,9 +15,9 @@ public class Person {
         this.cpf = cpf;
     }
 
-    public Person(String cpf, String nome, String email, String cellPhone, String homePhone) {
+    public Person(String cpf, String name, String email, String cellPhone, String homePhone) {
         this.cpf = cpf;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
         this.cellPhone = cellPhone;
         this.homePhone = homePhone;
@@ -31,12 +31,12 @@ public class Person {
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
