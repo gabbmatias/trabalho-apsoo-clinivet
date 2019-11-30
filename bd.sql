@@ -21,46 +21,36 @@ USE mydb;
 -- Table `mydb`.`addresses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS addresses (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   street VARCHAR(255) NULL,
   number INT NULL,
   complement VARCHAR(255) NULL,
   zipcode VARCHAR(8) NULL,
   city VARCHAR(255) NULL,
   state VARCHAR(2) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.customer (
-  id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS customer (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   cpf VARCHAR(11) NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NULL,
   phone VARCHAR(11) NULL,
   mobile VARCHAR(11) NULL,
   address_id INT NULL,
-  UNIQUE INDEX id_UNIQUE (cpf ASC) VISIBLE,
-  PRIMARY KEY (id),
-  UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
-  UNIQUE INDEX address_id_UNIQUE (address_id ASC) VISIBLE,
-  CONSTRAINT address
-    FOREIGN KEY (address_id)
-    REFERENCES mydb.addresses (id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+  PRIMARY KEY (id));
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`employees`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.employees (
-  id INT NULL,
-  register INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS employees (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  register INT NOT NULL,
   crmv VARCHAR(45) NULL,
   login VARCHAR(31) NOT NULL,
   password VARCHAR(31) NOT NULL,
@@ -72,65 +62,49 @@ CREATE TABLE IF NOT EXISTS mydb.employees (
   phone VARCHAR(11) NULL,
   mobile VARCHAR(11) NULL,
   address_id INT NOT NULL,
-  UNIQUE INDEX login_UNIQUE (login ASC) VISIBLE,
-  UNIQUE INDEX register_UNIQUE (register ASC) VISIBLE,
-  UNIQUE INDEX crmv_UNIQUE (crmv ASC) VISIBLE,
-  INDEX address_idx (address_id ASC) VISIBLE,
-  UNIQUE INDEX address_id_UNIQUE (address_id ASC) VISIBLE,
   CONSTRAINT address
     FOREIGN KEY (address_id)
-    REFERENCES mydb.addresses (id)
+    REFERENCES addresses (id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
+    ON UPDATE CASCADE);
 
 -- -----------------------------------------------------
 -- Table `mydb`.`procedures`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.procedures (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS procedures (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NULL,
-  price DECIMAL(10,2) NULL,
-  PRIMARY KEY (id),
-  UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE)
-ENGINE = InnoDB;
+  price DECIMAL(10,2) NULL);
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`species`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.species (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS species (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE)
-ENGINE = InnoDB;
+  );
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`breeds`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.breeds (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS breeds (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
   species_id INT NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE,
-  UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE,
   CONSTRAINT species
     FOREIGN KEY (id)
-    REFERENCES mydb.species (id)
+    REFERENCES species (id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB;
+    ON UPDATE RESTRICT);
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`animals`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.animals (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS animals (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   gender VARCHAR(1) NOT NULL,
   weight DECIMAL(3,2) NULL,
@@ -141,32 +115,30 @@ CREATE TABLE IF NOT EXISTS mydb.animals (
   PRIMARY KEY (id),
   CONSTRAINT breed
     FOREIGN KEY (id)
-    REFERENCES mydb.breeds (id)
+    REFERENCES breeds (id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT customer
     FOREIGN KEY (id)
-    REFERENCES mydb.customer (id)
+    REFERENCES customer (id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`payments`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.payments (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS payments (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   type VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
+);
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS mydb.orders (
-  id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
   date DATETIME NULL,
   total DECIMAL(10,2) NULL,
   payment_id INT NOT NULL,
@@ -176,12 +148,12 @@ CREATE TABLE IF NOT EXISTS mydb.orders (
   INDEX customer_idx (customer_id ASC) VISIBLE,
   CONSTRAINT payment
     FOREIGN KEY (payment_id)
-    REFERENCES mydb.payments (id)
+    REFERENCES payments (id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT customer
     FOREIGN KEY (customer_id)
-    REFERENCES mydb.customer (id)
+    REFERENCES customer (id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
