@@ -7,19 +7,22 @@ public abstract class Person {
     String email;
     String phone;
     String mobile;
+    Address address;
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(String cpf) {
         this.cpf = cpf;
     }
 
-    public Person(String cpf, String name, String email, String phone, String mobile) {
+    public Person(String cpf, String name, String email, String phone, String mobile, Address address) {
         this.cpf = cpf;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.mobile = mobile;
+        this.address = address;
     }
 
     public String getCpf() {
@@ -60,5 +63,13 @@ public abstract class Person {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
