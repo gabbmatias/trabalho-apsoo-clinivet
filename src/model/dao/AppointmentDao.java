@@ -1,6 +1,5 @@
 package model.dao;
 
-import model.entity.Address;
 import model.entity.Appointment;
 
 import java.sql.Connection;
@@ -87,8 +86,6 @@ public class AppointmentDao implements Dao<Appointment> {
         } catch (SQLException e) {
             Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.get().", e);
         }
-
-        System.out.println(sql);
     }
 
     @Override
