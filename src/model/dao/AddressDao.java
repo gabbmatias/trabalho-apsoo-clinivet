@@ -32,7 +32,7 @@ public class AddressDao implements Dao<Address> {
                 return createAddressByResult(result);
             }
         } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.get().", e);
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.get().", e);
         }
 
         return null;
@@ -52,7 +52,7 @@ public class AddressDao implements Dao<Address> {
             }
             return addressList;
         } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.getAll().", e);
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.getAll().", e);
         }
 
         return null;
@@ -72,7 +72,7 @@ public class AddressDao implements Dao<Address> {
             statement.setString(6, address.getState());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
         }
     }
 
@@ -98,7 +98,7 @@ public class AddressDao implements Dao<Address> {
             statement.setLong(7, address.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
         }
 
         System.out.println(sql);
@@ -113,7 +113,7 @@ public class AddressDao implements Dao<Address> {
             statement.setString(1, Long.toString(address.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.get().", e);
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.get().", e);
         }
     }
 
