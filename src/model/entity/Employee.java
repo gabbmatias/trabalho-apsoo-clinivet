@@ -3,8 +3,8 @@ import java.util.Calendar;
 
 public class Employee extends Person {
 
-    double id;
-    int register;
+    long id;
+    long register;
     String login;
     String password;
     Calendar birthDate;
@@ -12,47 +12,36 @@ public class Employee extends Person {
     boolean admin;
 
     public Employee() {
-        super();
     }
 
-    public Employee(String cpf) {
-        super(cpf);
-    }
-
-    public Employee(double id) {
-        super();
+    public Employee(long id) {
         this.id = id;
     }
 
-    public Employee(int register) {
-        super();
-        this.register = register;
-    }
-
-    public Employee(String cpf, double id, int register, String login, String password, Calendar birthDate, Calendar admission, boolean admin) {
-        super(cpf);
+    public Employee(String cpf, String name, String email, String phone, String mobile, Address address, long id, long register, String login, String password, Calendar birthDate, Calendar admission) {
+        super(cpf, name, email, phone, mobile, address);
         this.id = id;
         this.register = register;
         this.login = login;
         this.password = password;
         this.birthDate = birthDate;
         this.admission = admission;
-        this.admin = admin;
+        this.admin = false;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getRegister() {
+    public long getRegister() {
         return register;
     }
 
-    public void setRegister(int register) {
+    public void setRegister(long register) {
         this.register = register;
     }
 
