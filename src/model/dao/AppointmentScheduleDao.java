@@ -65,7 +65,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
             PreparedStatement statement = connection.prepareStatement(sql);
 //            statement.setTime(1, appointmentSchedule.getStreet());
             statement.setString(2, appointmentSchedule.getSymptoms());
-            statement.setBoolean(3, appointmentSchedule.isPerformed(););
+            statement.setBoolean(3, appointmentSchedule.isPerformed());
             statement.setObject(4, appointmentSchedule.getAppointment());
             statement.setObject(5, appointmentSchedule.getAnimal());
             statement.setObject(6, appointmentSchedule.getVet());
@@ -122,9 +122,9 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
 //        appointmentSchedule.set(result.getObject("time"));
         appointmentSchedule.setSymptoms(result.getString("symptoms"));
         appointmentSchedule.setPerformed(result.getBoolean("performed"));
-        appointmentSchedule.setAppointment(result.getObject("appointment"));
-        appointmentSchedule.setAnimal(result.getObject("animal"));
-        appointmentSchedule.setVet(result.getObject("vet"));
+//        appointmentSchedule.setAppointment(result.getObject("appointment"));
+//        appointmentSchedule.setAnimal(result.getObject("animal"));
+//        appointmentSchedule.setVet(result.getObject("vet"));
 
         return appointmentSchedule;
     }

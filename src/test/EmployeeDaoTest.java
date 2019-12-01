@@ -6,7 +6,6 @@ import model.entity.Employee;
 import java.sql.Connection;
 
 public class EmployeeDaoTest {
-
     public static void main(String[] args) {
         Connection connection  = DbConnection.getInstance();
         EmployeeDao dao = new EmployeeDao();
