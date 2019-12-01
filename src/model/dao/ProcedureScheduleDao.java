@@ -114,10 +114,10 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
     private ProcedureSchedule createProcedureScheduleByResult(ResultSet result) throws SQLException {
         ProcedureSchedule procedureSchedule = new ProcedureSchedule();
         procedureSchedule.setId(result.getLong("id"));
-//        procedureSchedule.setTime(result.getObject("street"));
-        procedureSchedule.setPerformed(result.getBoolean("number"));
-//        procedureSchedule.setProcedure(result.getObject("complement"));
-//        procedureSchedule.setAnimal(result.getObject("zipcode"));
+//        procedureSchedule.setTime(result.getObject("time"));
+        procedureSchedule.setPerformed(result.getBoolean("performed"));
+//        procedureSchedule.setProcedure(result.getObject("procedure"));
+//        procedureSchedule.setAnimal(result.getObject("animal"));
         return procedureSchedule;
     }
 }

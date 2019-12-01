@@ -105,8 +105,8 @@ public class ProcedureDao implements Dao<Procedure>{
     private Procedure createProcedureByResult(ResultSet result) throws SQLException {
         Procedure procedure = new Procedure();
         procedure.setId(result.getLong("id"));
-        procedure.setName(result.getString("street"));
-        procedure.setPrice(result.getDouble("number"));
+        procedure.setName(result.getString("name"));
+        procedure.setPrice(result.getDouble("price"));
         return procedure;
     }
 }
