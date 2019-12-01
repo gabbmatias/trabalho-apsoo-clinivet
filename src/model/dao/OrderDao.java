@@ -65,30 +65,61 @@ public class OrderDao implements Dao<Order> {
     @Override
     public void save(Order order) {
         String sql = "INSERT INTO " + table
-                + "(street, number, complement, zipcode, city, state, country) VALUES(?, ?, ?, ?, ?, ?, ?);";
+                + "(time, total, product, payment, appointment, procedure, customer) VALUES(?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, address.getStreet());
-            statement.setInt(2, address.getNumber());
-            statement.setString(3, address.getComplement());
-            statement.setString(4, address.getZipcode());
-            statement.setString(5, address.getCity());
-            statement.setString(6, address.getState());
-            statement.setString(7, address.getCountry());
+//            statement.setString(1, order.getTime());
+            statement.setDouble(2, order.getTotal());
+            statement.setObject(3, order.getProduct());
+            statement.setObject(4, order.getPayment());
+            statement.setObject(5, order.getAppointment());
+            statement.setObject(6, order.getProcedure());
+            statement.setObject(7, order.getCustomer());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no OrderDao.get().", e);
         }
     }
 
     @Override
     public void update(Order order) {
+        String sql = "UPDATE " + table + " SET "
+                + "time = ?, "
+                + "total = ?, "
+                + "product = ?, "
+                + "payment = ?, "
+                + "appointment = ?, "
+                + "procedure = ? "
+                + "customer = ? "
+                + "WHERE id = ?;";
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, order.getTime());
+            statement.setDouble(2, order.getTotal());
+            statement.setObject(3, order.getProduct());
+            statement.setObject(4, order.getPayment());
+            statement.setObject(5, order.getAppointment());
+            statement.setObject(6, order.getProcedure());
+            statement.setObject(7, order.getCustomer());
+            statement.setObject(8, order.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no OrderDao.get().", e);
+        }
     }
 
     @Override
     public void delete(Order order) {
+        String sql = "DELETE FROM  " + table + " WHERE id = ?;";
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, Long.toString(order.getId()));
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no OrderDao.get().", e);
+        }
     }
 
     private Order createOrderByResult(ResultSet result) throws SQLException {
