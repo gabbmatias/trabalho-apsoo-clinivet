@@ -1,14 +1,14 @@
 package model.entity;
 
 public class Appointment {
-    double id;
+    long id;
     String type;
     double price;
 
     public Appointment() {
     }
 
-    public Appointment(double id) {
+    public Appointment(long id) {
         this.id = id;
     }
 
@@ -16,17 +16,17 @@ public class Appointment {
         this.type = type;
     }
 
-    public Appointment(double id, String type, double price) {
+    public Appointment(long id, String type, double price) {
         this.id = id;
         this.type = type;
         this.price = price;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
