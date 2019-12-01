@@ -122,7 +122,7 @@ public class AddressDao implements Dao<Address> {
 
     private Address createAddressByResult(ResultSet result) throws SQLException {
         Address address = new Address();
-        address.setId(result.getInt("id"));
+        address.setId(result.getLong("id"));
         address.setStreet(result.getString("street"));
         address.setNumber(result.getInt("number"));
         address.setComplement(result.getString("complement"));

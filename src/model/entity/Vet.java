@@ -2,14 +2,14 @@ package model.entity;
 
 public class Vet extends Employee {
 
-    double id;
+    long id;
     String crmv;
 
     public Vet() {
         super();
     }
 
-    public Vet(double id) {
+    public Vet(long id) {
         super();
         this.id = id;
     }
@@ -19,19 +19,19 @@ public class Vet extends Employee {
         this.crmv = crmv;
     }
 
-    public Vet(String cpf, double id, String crmv) {
-        super(cpf);
+    public Vet(long id, String crmv) {
+        super();
         this.id = id;
         this.crmv = crmv;
     }
 
     @Override
-    public double getId() {
+    public long getId() {
         return id;
     }
 
     @Override
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
