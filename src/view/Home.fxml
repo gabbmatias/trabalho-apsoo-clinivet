@@ -5,73 +5,108 @@
 <?import javafx.scene.text.*?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Home">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-          <Tab text="Agenda">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab text="Clientes">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Clientes">
-                           <font>
-                              <Font name="Helvetica" size="16.0" />
-                           </font></Button>
-                        <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os clientes do sistema" wrappingWidth="376.955078125">
-                           <font>
-                              <Font name="Helvetica" size="16.0" />
-                           </font>
-                        </Text>
-                     </children></AnchorPane>
-                </content>
-            </Tab>
-            <Tab text="Produtos">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <children>
-                            <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Produtos">
-                                <font>
-                                    <Font name="Helvetica" size="16.0" />
-                                </font></Button>
-                            <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os produtos do sistema" wrappingWidth="393.955078125">
-                                <font>
-                                    <Font name="Helvetica" size="16.0" />
-                                </font>
-                            </Text>
-                        </children></AnchorPane>
-                </content>
-            </Tab>
-            <Tab text="Serviços">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                    <children>
-                        <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Serviços">
-                            <font>
-                                <Font name="Helvetica" size="16.0" />
-                            </font></Button>
-                        <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os serviços do sistema" wrappingWidth="395.955078125">
-                            <font>
-                                <Font name="System Font" size="16.0" />
-                            </font>
-                        </Text>
-                    </children></AnchorPane>
-                </content>
-            </Tab>
-            <Tab text="Pedido">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+    <children>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Home">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab text="Agenda">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab text="Clientes">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os clientes do sistema" wrappingWidth="376.955078125">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font>
+                                </Text>
+                                <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Clientes">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font></Button>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Animais">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os animais do sistema" wrappingWidth="395.955078125">
+                                    <font>
+                                        <Font name="System Font" size="16.0" />
+                                    </font>
+                                </Text>
+                                <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Animais">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font></Button>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Produtos">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Produtos">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font></Button>
+                                <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os produtos do sistema" wrappingWidth="393.955078125">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font>
+                                </Text>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Serviços">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Text fontSmoothingType="LCD" layoutX="166.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clique no botão para carregar os serviços do sistema" wrappingWidth="395.955078125">
+                                    <font>
+                                        <Font name="System Font" size="16.0" />
+                                    </font>
+                                </Text>
+                                <Button layoutX="250.0" layoutY="195.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="209.0" text="Carregar Serviços">
+                                    <font>
+                                        <Font name="Helvetica" size="16.0" />
+                                    </font></Button>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Pedido">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+                <Tab text="Admin">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Button layoutX="40.0" layoutY="50.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Listar Funcionários" />
+                                <Button layoutX="40.0" layoutY="130.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Criar Funcionários" />
+                                <Button layoutX="40.0" layoutY="210.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Deletar Funcionários" />
+                                <Button layoutX="210.0" layoutY="50.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Listar Raças" />
+                                <Button layoutX="210.0" layoutY="130.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Criar Raça" />
+                                <Button layoutX="210.0" layoutY="210.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Deletar Raça" />
+                                <Button layoutX="380.0" layoutY="50.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Listar Espécies" />
+                                <Button layoutX="380.0" layoutY="130.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Criar Espécie" />
+                                <Button layoutX="380.0" layoutY="210.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Deletar Espécie" />
+                                <Button layoutX="550.0" layoutY="50.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Listar Produtos" />
+                                <Button layoutX="550.0" layoutY="130.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Criar Produto" />
+                                <Button layoutX="550.0" layoutY="210.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="142.0" text="Deletar Produto" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </StackPane>
