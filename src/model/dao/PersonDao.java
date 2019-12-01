@@ -21,22 +21,22 @@ public class PersonDao implements Dao<Person> {
     @Override
     public Person get(long id) {
 
-        String sql = "SELECT * FROM people WHERE cpf=?";
-        Person person = new Person();
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
-            ResultSet result = statement.executeQuery();
-            if (result.next()) {
-                person.setCpf(result.getString("cpf"));
-                person.setName(result.getString("nome"));
-                person.setEmail(result.getString("email"));
-                return person;
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, null, e);
-        }
+//        String sql = "SELECT * FROM people WHERE cpf=?";
+//        Person person = new Person();
+//
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setString(1, Long.toString(id));
+//            ResultSet result = statement.executeQuery();
+//            if (result.next()) {
+//                person.setCpf(result.getString("cpf"));
+//                person.setName(result.getString("nome"));
+//                person.setEmail(result.getString("email"));
+//                return person;
+//            }
+//        } catch (SQLException e) {
+//            Logger.getLogger(PersonDao.class.getName()).log(Level.SEVERE, null, e);
+//        }
 
         return null;
     }
