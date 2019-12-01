@@ -3,7 +3,7 @@ package model.entity;
 import java.util.Calendar;
 
 public class Order {
-    double id;
+    long id;
     Calendar time;
     double total;
     Product product;
@@ -15,7 +15,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(double id) {
+    public Order(long id) {
         this.id = id;
     }
 
@@ -23,7 +23,7 @@ public class Order {
         this.time = time;
     }
 
-    public Order(double id, Calendar time, double total, Product product, Payment payment, Appointment appointment, Procedure procedure, Customer customer) {
+    public Order(long id, Calendar time, double total, Product product, Payment payment, Appointment appointment, Procedure procedure, Customer customer) {
         this.id = id;
         this.time = time;
         this.total = total;
@@ -34,11 +34,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
