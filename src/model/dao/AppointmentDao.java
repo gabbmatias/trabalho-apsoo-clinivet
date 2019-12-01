@@ -19,7 +19,7 @@ public class AppointmentDao implements Dao<Appointment> {
         this.connection = connection;
     }
 
-    private final String table = "appointment";
+    private final String table = "appointments";
 
     @Override
     public Appointment get(long id) {
@@ -107,8 +107,8 @@ public class AppointmentDao implements Dao<Appointment> {
     private Appointment creatAppointmentByResult(ResultSet result) throws SQLException {
         Appointment appointment = new Appointment();
         appointment.setId(result.getLong("id"));
-        appointment.setType(result.getString("street"));
-        appointment.setPrice(result.getDouble("number"));
+        appointment.setType(result.getString("type"));
+        appointment.setPrice(result.getDouble("price"));
         return appointment;
     }
 }

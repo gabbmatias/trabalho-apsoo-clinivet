@@ -107,7 +107,7 @@ public class VetDao implements Dao<Vet> {
     private Vet createVetByResult(ResultSet result) throws SQLException {
         Vet vet = new Vet();
         vet.setId(result.getLong("id"));
-        vet.setCrmv(result.getString("street"));
+        vet.setCrmv(result.getString("crmv"));
         return vet;
     }
 }
