@@ -18,6 +18,10 @@ public class Employee extends Person {
         this.id = id;
     }
 
+    public Employee(String cpf) {
+        super(cpf);
+    }
+
     public Employee(String cpf, String name, String email, String phone, String mobile, Address address, long id, long register, String login, String password, Calendar birthDate, Calendar admission) {
         super(cpf, name, email, phone, mobile, address);
         this.id = id;

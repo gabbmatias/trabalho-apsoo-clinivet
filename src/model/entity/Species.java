@@ -1,13 +1,13 @@
 package model.entity;
 
 public class Species {
-    double id;
+    long id;
     String name;
 
     public Species() {
     }
 
-    public Species(double id) {
+    public Species(long id) {
         this.id = id;
     }
 
@@ -15,16 +15,16 @@ public class Species {
         this.name = name;
     }
 
-    public Species(double id, String name) {
+    public Species(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

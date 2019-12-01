@@ -26,7 +26,7 @@ public class AddressDao implements Dao<Address> {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createAddressByResult(result);
@@ -110,7 +110,7 @@ public class AddressDao implements Dao<Address> {
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(address.getId()));
+            statement.setLong(1, address.getId());
             statement.execute();
         } catch (SQLException e) {
             Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.get().", e);

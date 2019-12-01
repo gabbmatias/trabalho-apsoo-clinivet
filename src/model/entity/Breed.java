@@ -1,14 +1,14 @@
 package model.entity;
 
 public class Breed {
-    double id;
+    long id;
     String name;
     Species species;
 
     public Breed() {
     }
 
-    public Breed(double id) {
+    public Breed(long id) {
         this.id = id;
     }
 
@@ -16,17 +16,17 @@ public class Breed {
         this.name = name;
     }
 
-    public Breed(double id, String name, Species species) {
+    public Breed(long id, String name, Species species) {
         this.id = id;
         this.name = name;
         this.species = species;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

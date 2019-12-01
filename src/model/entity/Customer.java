@@ -2,7 +2,7 @@ package model.entity;
 
 public class Customer extends Person {
 
-    double id;
+    long id;
 
     public Customer() {
     }
@@ -11,20 +11,20 @@ public class Customer extends Person {
         super(cpf);
     }
 
-    public Customer(double id) {
+    public Customer(long id) {
         this.id = id;
     }
 
-    public Customer(String cpf, double id) {
+    public Customer(String cpf, long id) {
         super(cpf);
         this.id = id;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
