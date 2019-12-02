@@ -20,7 +20,7 @@ public class Customer extends Person {
         this.id = id;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 

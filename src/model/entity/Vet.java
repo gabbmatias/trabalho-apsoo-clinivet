@@ -19,8 +19,8 @@ public class Vet extends Employee {
         this.crmv = crmv;
     }
 
-    public Vet(long id, String crmv) {
-        super();
+    public Vet(String cpf, long id, String crmv) {
+        super(cpf);
         this.id = id;
         this.crmv = crmv;
     }
