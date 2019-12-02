@@ -19,12 +19,6 @@ public class Vet extends Employee {
         this.crmv = crmv;
     }
 
-    public Vet(String cpf, long id, String crmv) {
-        super(cpf);
-        this.id = id;
-        this.crmv = crmv;
-    }
-
     @Override
     public long getId() {
         return id;

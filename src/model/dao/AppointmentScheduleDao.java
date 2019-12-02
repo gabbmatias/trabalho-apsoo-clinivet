@@ -129,7 +129,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
         appointmentSchedule.setPerformed(result.getBoolean("performed"));
         appointmentSchedule.setAppointment(appointmentDao.get(result.getLong("appointment_id")));
         appointmentSchedule.setAnimal(animalDao.get(result.getLong("animal")));
-        appointmentSchedule.setVet(vetDao.get(result.getLong("id_vet")));
+        appointmentSchedule.setVet(vetDao.get(result.getLong("employee_id")));
         appointmentSchedule.setOrder(orderDao.get(result.getLong("order_id")));
         return appointmentSchedule;
     }

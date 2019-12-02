@@ -64,21 +64,21 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public void save(Order order) {
-        String sql = "INSERT INTO " + table
-                + "(street, number, complement, zipcode, city, state, country) VALUES(?, ?, ?, ?, ?, ?, ?);";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, address.getStreet());
-            statement.setInt(2, address.getNumber());
-            statement.setString(3, address.getComplement());
-            statement.setString(4, address.getZipcode());
-            statement.setString(5, address.getCity());
-            statement.setString(6, address.getState());
-            statement.setString(7, address.getCountry());
-            statement.execute();
-        } catch (SQLException e) {
-            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
-        }
+//        String sql = "INSERT INTO " + table
+//                + "(street, number, complement, zipcode, city, state, country) VALUES(?, ?, ?, ?, ?, ?, ?);";
+//        try {
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            statement.setString(1, address.getStreet());
+//            statement.setInt(2, address.getNumber());
+//            statement.setString(3, address.getComplement());
+//            statement.setString(4, address.getZipcode());
+//            statement.setString(5, address.getCity());
+//            statement.setString(6, address.getState());
+//            statement.setString(7, address.getCountry());
+//            statement.execute();
+//        } catch (SQLException e) {
+//            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
+//        }
     }
 
     @Override

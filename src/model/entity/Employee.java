@@ -5,6 +5,8 @@ public class Employee extends Person {
 
     long id;
     long register;
+    String cpf;
+    String crmv;
     String login;
     String password;
     Calendar birthDate;
@@ -18,19 +20,17 @@ public class Employee extends Person {
         this.id = id;
     }
 
-    public Employee(String cpf) {
-        super(cpf);
-    }
-
-    public Employee(String cpf, String name, String email, String phone, String mobile, Address address, long id, long register, String login, String password, Calendar birthDate, Calendar admission) {
+    public Employee(String cpf, String name, String email, String phone, String mobile, Address address, long id, long register, String cpf1, String crmv, String login, String password, Calendar birthDate, Calendar admission, boolean admin) {
         super(cpf, name, email, phone, mobile, address);
         this.id = id;
         this.register = register;
+        this.cpf = cpf1;
+        this.crmv = crmv;
         this.login = login;
         this.password = password;
         this.birthDate = birthDate;
         this.admission = admission;
-        this.admin = false;
+        this.admin = admin;
     }
 
     public long getId() {
@@ -47,6 +47,24 @@ public class Employee extends Person {
 
     public void setRegister(long register) {
         this.register = register;
+    }
+
+    @Override
+    public String getCpf() {
+        return cpf;
+    }
+
+    @Override
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCrmv() {
+        return crmv;
+    }
+
+    public void setCrmv(String crmv) {
+        this.crmv = crmv;
     }
 
     public String getLogin() {
@@ -87,5 +105,18 @@ public class Employee extends Person {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public String getFunction(){
+
+        if(this.isAdmin()) {
+            return "Admnistrador";
+        }
+
+        if(this.crmv != null && !this.crmv.isBlank()){
+            return "Veterinário";
+        }
+
+        return "Funcionário";
     }
 }

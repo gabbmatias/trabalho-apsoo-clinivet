@@ -123,7 +123,7 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
         procedureSchedule.setAnimal(animalDao.get(result.getLong("animal_id")));
         procedureSchedule.setProcedure(procedureDao.get(result.getLong("procedure_id")));
         procedureSchedule.setOrder(orderDao.get(result.getLong("order_id")));
-        procedureSchedule.
+        //procedureSchedule.
         return procedureSchedule;
     }
 }
