@@ -1,12 +1,13 @@
 package model.entity;
 
-public class Person {
+public abstract class Person {
 
     String cpf;
     String name;
     String email;
-    String cellPhone;
-    String homePhone;
+    String phone;
+    String mobile;
+    Address address;
 
     public Person() {
     }
@@ -15,12 +16,13 @@ public class Person {
         this.cpf = cpf;
     }
 
-    public Person(String cpf, String name, String email, String cellPhone, String homePhone) {
+    public Person(String cpf, String name, String email, String phone, String mobile, Address address) {
         this.cpf = cpf;
         this.name = name;
         this.email = email;
-        this.cellPhone = cellPhone;
-        this.homePhone = homePhone;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.address = address;
     }
 
     public String getCpf() {
@@ -47,19 +49,27 @@ public class Person {
         this.email = email;
     }
 
-    public String getCellPhone() {
-        return cellPhone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCellPhone(String cellPhone) {
-        this.cellPhone = cellPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getHomePhone() {
-        return homePhone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
