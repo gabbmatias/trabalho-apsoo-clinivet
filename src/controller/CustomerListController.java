@@ -38,15 +38,16 @@ public class CustomerListController {
         customerObservableList = FXCollections.observableList(customerList);
         tablecolumn_customer_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tablecolumn_customer_cpf.setCellValueFactory((customer) -> {
+            String cpf = customer.getValue().getCpf();
             try {
                 MaskFormatter maskFormatter = new MaskFormatter("###.###.###-##");
                 maskFormatter.setValueContainsLiteralCharacters(false);
-                return new SimpleStringProperty(maskFormatter.valueToString(customer.getValue().getCpf()));
+                return new SimpleStringProperty(maskFormatter.valueToString(cpf));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            return new SimpleStringProperty("CPF Inválido");
+            return new SimpleStringProperty(cpf);
         });
         tableview_customers.setItems(customerObservableList);
     }
