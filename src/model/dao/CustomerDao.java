@@ -31,17 +31,17 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet result = statement.executeQuery();
             if (result.next())
                 return createCustomerByResult(result);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no Customer.get().", e);
         }
 
         return null;
     }
+
     @Override
     public List<Customer> getAll() {
         String sql = "SELECT * FROM " + table + ";";
-        List<Customer> customerList= new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -49,13 +49,13 @@ public class CustomerDao implements Dao<Customer> {
             while (result.next())
                 customerList.add(createCustomerByResult(result));
             return customerList;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no CustomerDao.getAll().", e);
         }
 
         return null;
     }
+
     @Override
     public void save(Customer customer) {
         String sql = String.format("INSERT INTO %s(cpf, name, email, phone, mobile, address_id) VALUES(?, ?, ?, ?, ?, ?);", table);
@@ -68,11 +68,11 @@ public class CustomerDao implements Dao<Customer> {
             statement.setString(5, customer.getMobile());
             statement.setLong(6, customer.getAddress().getId());
             statement.execute();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, "Problema ocorrido no CustomerDao.save().", e);
         }
     }
+
     @Override
     public void update(Customer customer) {
         String sql = "UPDATE " + table + " SET "
@@ -84,20 +84,20 @@ public class CustomerDao implements Dao<Customer> {
                 + " WHERE id = ?;";
 
 
-         try {
-             PreparedStatement statement = connection.prepareStatement(sql);
-             statement.setString(1, customer.getCpf());
-             statement.setString(2, customer.getName());
-             statement.setString(3, customer.getEmail());
-             statement.setString(4, customer.getPhone());
-             statement.setString(5, customer.getMobile());
-             statement.setLong(6, customer.getId());
-             statement.execute();
-            }
-         catch (SQLException e) {
-             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no Customer.update().", e);
-         }
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, customer.getCpf());
+            statement.setString(2, customer.getName());
+            statement.setString(3, customer.getEmail());
+            statement.setString(4, customer.getPhone());
+            statement.setString(5, customer.getMobile());
+            statement.setLong(6, customer.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no Customer.update().", e);
+        }
     }
+
     @Override
     public void delete(Customer customer) {
         String sql = "DELETE FROM  " + table + " WHERE id = ?;";
@@ -106,12 +106,12 @@ public class CustomerDao implements Dao<Customer> {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, customer.getId());
             statement.execute();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no Customer.delete().", e);
         }
     }
-    private Customer createCustomerByResult(ResultSet result) throws  SQLException{
+
+    private Customer createCustomerByResult(ResultSet result) throws SQLException {
         Customer customer = new Customer();
         customer.setId(result.getLong("id"));
         customer.setCpf(result.getString("cpf"));
@@ -119,8 +119,9 @@ public class CustomerDao implements Dao<Customer> {
         customer.setEmail(result.getString("email"));
         customer.setPhone(result.getString("phone"));
         customer.setMobile(result.getString("mobile"));
-        customer.setAddress(addressDao.get(result.getLong("address_id")));
+        //customer.setAddress(addressDao.get(result.getLong("address_id")));
+        customer.setAddress(null);
         return customer;
     }
-    }
+}
 
