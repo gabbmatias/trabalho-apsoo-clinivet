@@ -1,7 +1,6 @@
 package model.dao;
 
-import model.entity.Address;
-import model.entity.Vet;
+import model.entity.Payment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,102 +11,98 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class VetDao implements Dao<Vet> {
-
+public class PaymentDao implements Dao<Payment>{
     Connection connection;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
 
-    private final String table = "employees";
+    private final String table = "payments";
 
     @Override
-    public Vet get(long id) {
+    public Payment get(long id) {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, Long.toString(id));
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                return createVetByResult(result);
+                return createPaymentByResult(result);
             }
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.get().", e);
+            Logger.getLogger(PaymentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no PaymentDao.get().", e);
         }
 
         return null;
-
-
     }
 
     @Override
-    public List<Vet> getAll() {
+    public List<Payment> getAll() {
         String sql = "SELECT * FROM " + table + ";";
 
-        List<Vet> vetList = new ArrayList<>();
+        List<Payment> paymentList = new ArrayList<>();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             while (result.next()){
-                vetList.add(createVetByResult(result));
+                paymentList.add(createPaymentByResult(result));
             }
-            return vetList;
+            return paymentList;
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.getAll().", e);
+            Logger.getLogger(PaymentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no PaymentDao.get().", e);
         }
 
         return null;
     }
 
     @Override
-    public void save(Vet vet) {
+    public void save(Payment payment) {
         String sql = "INSERT INTO " + table
-                + "(crmv) VALUES(?);";
+                + "(type) VALUES(?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, vet.getCrmv());
+            statement.setString(1, payment.getType());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(PaymentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no PaymentDao.get().", e);
         }
     }
 
     @Override
-    public void update(Vet vet) {
+    public void update(Payment payment) {
         String sql = "UPDATE " + table + " SET "
-                + "crmv = ?, "
+                + "type = ?, "
                 + "WHERE id = ?;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, vet.getCrmv());
+            statement.setString(1, payment.getType());
+            statement.setLong(2, payment.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(PaymentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no PaymentDao.get().", e);
         }
-
-        System.out.println(sql);
     }
 
     @Override
-    public void delete(Vet vet) {
+    public void delete(Payment payment) {
         String sql = "DELETE FROM  " + table + " WHERE id = ?;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(vet.getId()));
+            statement.setString(1, Long.toString(payment.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(PaymentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no PaymentDao.get().", e);
         }
     }
 
-    private Vet createVetByResult(ResultSet result) throws SQLException {
-        Vet vet = new Vet();
-        vet.setId(result.getLong("id"));
-        vet.setCrmv(result.getString("crmv"));
-        return vet;
+    private Payment createPaymentByResult(ResultSet result) throws SQLException {
+        Payment payment = new Payment();
+        payment.setId(result.getLong("id"));
+        payment.setType(result.getString("type"));
+        return payment;
     }
 }

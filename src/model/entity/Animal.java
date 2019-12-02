@@ -10,6 +10,8 @@ public class Animal {
     String color;
     Calendar birthDate;
     Breed breed;
+    Customer customer;
+
 
     public Animal() {
     }
@@ -22,7 +24,7 @@ public class Animal {
         this.name = name;
     }
 
-    public Animal(double id, String name, double weight, String gender, String color, Calendar birthDate, Breed breed) {
+    public Animal(double id, String name, double weight, String gender, String color, Calendar birthDate, Breed breed, Customer customer) {
         this.id = id;
         this.name = name;
         this.weight = weight;
@@ -86,5 +88,13 @@ public class Animal {
 
     public void setBreed(Breed breed) {
         this.breed = breed;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
