@@ -4,21 +4,32 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import model.bo.ProductBo;
 import model.entity.Product;
 
 import javax.swing.text.MaskFormatter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.List;
+import javafx.event.ActionEvent;
 
 public class ProductListController {
 
     ProductBo productBo = new ProductBo();
     ObservableList<Product> productObservableList;
+
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML
     TableView tableview_products;
@@ -43,4 +54,16 @@ public class ProductListController {
         });
         tableview_products.setItems(productObservableList);
     }
+
+//    @FXML
+//    private void switchView(ActionEvent event) {
+//        String view = "/view/ProductView.fxml";
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+//        try {
+//            loader.load();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 }

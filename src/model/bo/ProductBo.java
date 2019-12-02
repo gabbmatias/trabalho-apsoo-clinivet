@@ -20,4 +20,16 @@ public class ProductBo {
         return productDao.getAll();
     }
 
+    public void createProduct(Product product){
+        productDao.save(product);
+    }
+
+    public void updateProduct(){
+
+    }
+
+    public void deleteProduct(){
+
+    }
+
 }
