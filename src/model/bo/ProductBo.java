@@ -20,5 +20,4 @@ public class ProductBo {
         return productDao.getAll();
     }
 
-
 }
