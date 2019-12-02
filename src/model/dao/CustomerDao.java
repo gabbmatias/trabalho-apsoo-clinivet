@@ -58,7 +58,7 @@ public class CustomerDao implements Dao<Customer> {
     }
     @Override
     public void save(Customer customer) {
-        String sql = String.format("INSERT INTO %s(cpf, name, email, phone, mobile, address_id) VALUES(?, ?, ?, ?, ?, ?);", table);
+        String sql = "INSERT INTO + table +"(cpf, name, email, phone, mobile, address_id) VALUES(?, ?, ?, ?, ?, ?);", table);
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, customer.getCpf());
