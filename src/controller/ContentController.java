@@ -3,10 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -79,16 +76,48 @@ public class ContentController {
             view = "/view/ProductList.fxml";
         }
 
-        if(tab == tab_produtos){
-            view = "/view/ProductList.fxml";
-        }
-
         if(tab == tab_servicos){
             view = "/view/ProcedureList.fxml";
         }
 
         if(tab == tab_admin){
             view = "/view/EmployeeList.fxml";
+        }
+
+
+        if(view != null){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+                AnchorPane tabContent = loader.load();
+//                ContentController controller = loader.getController();
+//                controller.setHomeController(this);
+                children.add(tabContent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void activeAlternativeTab(Button btn){
+        String view = null;
+        List<Node> children = pane_main_content.getChildren();
+        children.clear();
+
+        if(btn.equals("create_customer")){
+            view = "/view/CustomerView.fxml";
+        }
+
+        if(btn.equals("create_product")){
+            view = "/view/ProductView.fxml";
+        }
+
+
+        if(btn.equals("create_procedure")){
+            view = "/view/ProcedureVire.fxml";
+        }
+
+        if(btn.equals("create_employee")){
+            view = "/view/EmployeeView.fxml";
         }
 
 

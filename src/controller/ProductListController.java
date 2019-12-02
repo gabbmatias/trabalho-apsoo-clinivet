@@ -29,9 +29,6 @@ public class ProductListController {
     ObservableList<Product> productObservableList;
 
     @FXML
-    AnchorPane anchorPane;
-
-    @FXML
     TableView tableview_products;
 
     @FXML
@@ -54,16 +51,5 @@ public class ProductListController {
         });
         tableview_products.setItems(productObservableList);
     }
-
-//    @FXML
-//    private void switchView(ActionEvent event) {
-//        String view = "/view/ProductView.fxml";
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
-//        try {
-//            loader.load();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 }

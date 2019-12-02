@@ -51,19 +51,4 @@ public class ProductViewController {
         }
     }
 
-//    @FXML
-//    private void handleInsert(){
-//        String name = txtfield_name.getText();
-//        Double price = Double.valueOf(txtfield_price.getText());
-//
-//        if(name.isBlank() || name.isEmpty()){
-//            AlertBuilder.build("error", "Nome em branco", null, "Por favor, preencha um nome.").showAndWait();
-//            return;
-//        }
-//
-//        product.setName(name);
-//        product.setPrice(price);
-//        productBo.createProduct(product);
-//    }
-
 }

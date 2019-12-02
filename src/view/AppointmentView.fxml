@@ -15,6 +15,6 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button layoutX="342.0" layoutY="522.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="138.0" text="Adicionar Consulta" />
+        <Button fx:id="create_appointment" layoutX="342.0" layoutY="522.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="138.0" text="Adicionar Consulta" />
     </children>
 </AnchorPane>
