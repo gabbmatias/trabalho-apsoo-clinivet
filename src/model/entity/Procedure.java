@@ -1,14 +1,14 @@
 package model.entity;
 
 public class Procedure {
-    double id;
+    long id;
     String name;
     double price;
 
     public Procedure() {
     }
 
-    public Procedure(double id) {
+    public Procedure(long id) {
         this.id = id;
     }
 
@@ -16,17 +16,17 @@ public class Procedure {
         this.name = name;
     }
 
-    public Procedure(double id, String name, double price) {
+    public Procedure(long id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

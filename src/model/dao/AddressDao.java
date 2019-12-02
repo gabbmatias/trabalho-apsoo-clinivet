@@ -61,7 +61,7 @@ public class AddressDao implements Dao<Address> {
     @Override
     public void save(Address address) {
         String sql = "INSERT INTO " + table
-                + "(street, number, complement, zipcode, city, state) VALUES(?, ?, ?, ?, ?, ?);";
+                + "(street, number, complement, zipcode, city, state, country) VALUES(?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, address.getStreet());
@@ -70,6 +70,7 @@ public class AddressDao implements Dao<Address> {
             statement.setString(4, address.getZipcode());
             statement.setString(5, address.getCity());
             statement.setString(6, address.getState());
+            statement.setString(7, address.getCountry());
             statement.execute();
         } catch (SQLException e) {
             Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
@@ -85,6 +86,7 @@ public class AddressDao implements Dao<Address> {
                 + "zipcode = ?, "
                 + "city = ?, "
                 + "state = ? "
+                + "country = ? "
                 + "WHERE id = ?;";
 
         try {
@@ -95,7 +97,8 @@ public class AddressDao implements Dao<Address> {
             statement.setString(4, address.getZipcode());
             statement.setString(5, address.getCity());
             statement.setString(6, address.getState());
-            statement.setLong(7, address.getId());
+            statement.setString(7, address.getCountry());
+            statement.setLong(8, address.getId());
             statement.execute();
         } catch (SQLException e) {
             Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
@@ -119,13 +122,14 @@ public class AddressDao implements Dao<Address> {
 
     private Address createAddressByResult(ResultSet result) throws SQLException {
         Address address = new Address();
-        address.setId(result.getInt("id"));
+        address.setId(result.getLong("id"));
         address.setStreet(result.getString("street"));
         address.setNumber(result.getInt("number"));
         address.setComplement(result.getString("complement"));
         address.setZipcode(result.getString("zipcode"));
         address.setCity(result.getString("city"));
         address.setState(result.getString("state"));
+        address.setCountry(result.getString("country"));
         return address;
     }
 }

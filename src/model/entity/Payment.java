@@ -1,13 +1,13 @@
 package model.entity;
 
 public class Payment {
-    double id;
+    long id;
     String type;
 
     public Payment() {
     }
 
-    public Payment(double id) {
+    public Payment(long id) {
         this.id = id;
     }
 
@@ -15,16 +15,16 @@ public class Payment {
         this.type = type;
     }
 
-    public Payment(double id, String type) {
+    public Payment(long id, String type) {
         this.id = id;
         this.type = type;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

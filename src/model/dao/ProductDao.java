@@ -1,7 +1,7 @@
 package model.dao;
 
 import model.entity.Address;
-import model.entity.Vet;
+import model.entity.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,102 +12,101 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class VetDao implements Dao<Vet> {
-
+public class ProductDao implements Dao<Product>{
     Connection connection;
 
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
 
-    private final String table = "employees";
+    private final String table = "products";
 
     @Override
-    public Vet get(long id) {
+    public Product get(long id) {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, Long.toString(id));
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                return createVetByResult(result);
+                return createProductByResult(result);
             }
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.get().", e);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProductDao.get().", e);
         }
 
         return null;
-
-
     }
 
     @Override
-    public List<Vet> getAll() {
+    public List<Product> getAll() {
         String sql = "SELECT * FROM " + table + ";";
 
-        List<Vet> vetList = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             while (result.next()){
-                vetList.add(createVetByResult(result));
+                productList.add(createProductByResult(result));
             }
-            return vetList;
+            return productList;
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.getAll().", e);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProductDao.get().", e);
         }
 
         return null;
     }
 
     @Override
-    public void save(Vet vet) {
+    public void save(Product product) {
         String sql = "INSERT INTO " + table
-                + "(crmv) VALUES(?);";
+                + "(name, price) VALUES(?,?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, vet.getCrmv());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProductDao.get().", e);
         }
     }
 
     @Override
-    public void update(Vet vet) {
+    public void update(Product product) {
         String sql = "UPDATE " + table + " SET "
-                + "crmv = ?, "
+                + "name = ?, "
+                + "price = ?, "
                 + "WHERE id = ?;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, vet.getCrmv());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProductDao.get().", e);
         }
-
-        System.out.println(sql);
     }
 
     @Override
-    public void delete(Vet vet) {
+    public void delete(Product product) {
         String sql = "DELETE FROM  " + table + " WHERE id = ?;";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(vet.getId()));
+            statement.setString(1, Long.toString(product.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProductDao.get().", e);
         }
     }
 
-    private Vet createVetByResult(ResultSet result) throws SQLException {
-        Vet vet = new Vet();
-        vet.setId(result.getLong("id"));
-        vet.setCrmv(result.getString("crmv"));
-        return vet;
+    private Product createProductByResult(ResultSet result) throws SQLException {
+        Product product = new Product();
+        product.setId(result.getLong("id"));
+        product.setName(result.getString("name"));
+        product.setPrice(result.getDouble("price"));
+        return product;
     }
 }

@@ -3,7 +3,7 @@ package model.entity;
 import java.util.Calendar;
 
 public class AppointmentSchedule {
-    double id;
+    long id;
     Calendar time;
     String symptoms;
     boolean performed;
@@ -14,7 +14,7 @@ public class AppointmentSchedule {
     public AppointmentSchedule() {
     }
 
-    public AppointmentSchedule(double id) {
+    public AppointmentSchedule(long id) {
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class AppointmentSchedule {
         this.time = time;
     }
 
-    public AppointmentSchedule(double id, Calendar time, String symptoms, boolean performed, Appointment appointment, Animal animal, Vet vet) {
+    public AppointmentSchedule(long id, Calendar time, String symptoms, boolean performed, Appointment appointment, Animal animal, Vet vet) {
         this.id = id;
         this.time = time;
         this.symptoms = symptoms;
@@ -32,11 +32,11 @@ public class AppointmentSchedule {
         this.vet = vet;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -87,4 +87,5 @@ public class AppointmentSchedule {
     public void setVet(Vet vet) {
         this.vet = vet;
     }
+
 }

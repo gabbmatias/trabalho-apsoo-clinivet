@@ -1,14 +1,14 @@
 package model.entity;
 
 public class Product {
-    double id;
+    long id;
     String name;
     double price;
 
     public Product() {
     }
 
-    public Product(double id) {
+    public Product(long id) {
         this.id = id;
     }
 
@@ -16,17 +16,17 @@ public class Product {
         this.name = name;
     }
 
-    public Product(double id, String name, double price) {
+    public Product(long id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

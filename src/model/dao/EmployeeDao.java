@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,22 +43,96 @@ public class EmployeeDao implements Dao<Employee> {
 
     @Override
     public List<Employee> getAll() {
+        String sql = "SELECT * FROM " + table + ";";
+
+        List<Employee> employeeList = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                employeeList.add(createEmployeeByResult(result));
+            }
+            return employeeList;
+        } catch (SQLException e) {
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.getAll().", e);
+        }
+
         return null;
     }
 
     @Override
     public void save(Employee employee) {
-
+        String sql = "INSERT INTO " + table
+                + "(cpf,name,email,phone,mobile,address,register,login,password,birthDate,admission) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, employee.getCpf());
+            statement.setString(2, employee.getName());
+            statement.setString(3, employee.getEmail());
+            statement.setString(4, employee.getPhone());
+            statement.setString(5, employee.getMobile());
+            statement.setObject(6, employee.getAddress());
+            statement.setLong(7, employee.getRegister());
+            statement.setString(8, employee.getLogin());
+            statement.setString(9, employee.getPassword());
+//            statement.setObject(10, employee.getBirthDate());
+//            statement.setObject(11, employee.getAdmission());
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(AddressDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AddressDao.create().", e);
+        }
     }
 
     @Override
     public void update(Employee employee) {
+        String sql = "UPDATE " + table + " SET "
+                + "cpf = ?, "
+                + "name = ?, "
+                + "email = ?, "
+                + "phone = ?, "
+                + "mobile = ?, "
+                + "address = ? "
+                + "register = ? "
+                + "login = ? "
+                + "password = ? "
+                + "birthDate = ? "
+                + "admission = ? "
+                + "WHERE id = ?;";
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, employee.getCpf());
+            statement.setString(2, employee.getName());
+            statement.setString(3, employee.getEmail());
+            statement.setString(4, employee.getPhone());
+            statement.setString(5, employee.getMobile());
+            statement.setObject(6, employee.getAddress());
+            statement.setLong(7, employee.getRegister());
+            statement.setString(8, employee.getLogin());
+            statement.setString(9, employee.getPassword());
+//            statement.setObject(10, employee.getBirthDate());
+//            statement.setObject(11, employee.getAdmission());
+            statement.setLong(12, employee.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no EmployeeDao.create().", e);
+        }
+
+        System.out.println(sql);
     }
 
     @Override
     public void delete(Employee employee) {
+        String sql = "DELETE FROM  " + table + " WHERE id = ?;";
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, Long.toString(employee.getId()));
+            statement.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no EmployeeDao.get().", e);
+        }
     }
 
     private Employee createEmployeeByResult(ResultSet result) throws SQLException {
