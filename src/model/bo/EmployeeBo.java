@@ -5,6 +5,7 @@ import model.db.DbConnection;
 import model.entity.Employee;
 
 import java.sql.Connection;
+import java.util.List;
 
 public class EmployeeBo {
 
@@ -17,5 +18,9 @@ public class EmployeeBo {
 
     public Employee login(String login, String password){
         return employeeDao.get(login, password);
+    }
+
+    public List<Employee> getAllEmployees(){
+        return employeeDao.getAll();
     }
 }

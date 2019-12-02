@@ -81,7 +81,7 @@ public class EmployeeDao implements Dao<Employee> {
     @Override
     public void save(Employee employee) {
         String sql = "INSERT INTO " + table
-                + "(cpf,name,email,phone,mobile,address,register,login,password,birthDate,admission) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                + "(cpf, crmv, name, email, phone, mobile, address, register, login, password, birthDate, admission) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, employee.getCpf());
@@ -156,14 +156,15 @@ public class EmployeeDao implements Dao<Employee> {
         Employee employee = new Employee();
         employee.setId(result.getLong("id"));
         employee.setRegister(result.getLong("register"));
+        employee.setCpf(result.getString("cpf"));
+        employee.setCrmv(result.getString("crmv"));
         employee.setLogin((result.getString("login")));
         employee.setPassword(result.getString("password"));
-        //employee.setBirthDate();
         //employee.setAdmission();
         employee.setAdmin(result.getBoolean("admin"));
-        employee.setCpf(result.getString("cpf"));
         employee.setName(result.getString("name"));
         employee.setEmail(result.getString("email"));
+        //employee.setBirthDate();
         employee.setPhone(result.getString("phone"));
         employee.setMobile(result.getString("mobile"));
         employee.setAddress(addressDao.get(result.getLong("address_id")));

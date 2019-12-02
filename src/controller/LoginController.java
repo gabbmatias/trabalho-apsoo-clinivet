@@ -19,40 +19,40 @@ public class LoginController {
     @FXML
     PasswordField passfield_password;
 
+    @FXML
+    private void initialize() {
+        System.out.println("View Login iniciada");
+    }
+
     public void handleLogin(){
 
         String login = txtfield_login.getText();
         String password = passfield_password.getText();
 
         if(login.isBlank() || login.isEmpty()){
-            AlertBuilder.build("error", "Erro", "Login é obrigatório.", "Por favor, preencha um login.").showAndWait();
+            AlertBuilder.build("error", "Login em branco", null, "Por favor, preencha um login.").showAndWait();
             return;
         }
 
         if(password.isBlank() || password.isEmpty()){
-            AlertBuilder.build("error", "Erro", "Senha é obrigatório.", "Por favor, preencha uma senha.").showAndWait();
+            AlertBuilder.build("error", "Senha em branco", null, "Por favor, preencha uma senha.").showAndWait();
             return;
         }
 
         Employee loginEmployee = employeeBo.login(login, password);
         if(loginEmployee != null){
             System.out.println("Logado com o " + loginEmployee.getName());
-            homeController.loadContent();
+            homeController.loadContent(loginEmployee);
             return;
         }
 
         passfield_password.setText("");
-        AlertBuilder.build("error", "Erro", "Login e/ou senha incorretos.", "Confirme os valores digitados e tente novamente.").showAndWait();
+        AlertBuilder.build("error", "Não autorizado", null, "Login e/ou senha incorretos.").showAndWait();
 
     }
 
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
-    }
-
-    @FXML
-    private void initialize() {
-        System.out.println("View Login iniciada");
     }
 
 }
