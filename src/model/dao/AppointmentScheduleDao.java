@@ -14,6 +14,11 @@ import java.util.logging.Logger;
 public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
     Connection connection;
 
+    AppointmentDao appointmentDao = new AppointmentDao();
+    VetDao vetDao = new VetDao();
+    AnimalDao animalDao = new AnimalDao();
+    OrderDao orderDao = new OrderDao();
+
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
@@ -25,7 +30,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createAppointmentScheduleByResult(result);
@@ -51,7 +56,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
             }
             return appointmentScheduleList;
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.get().", e);
+            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.getAll().", e);
         }
 
         return null;
@@ -71,7 +76,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
             statement.setObject(6, appointmentSchedule.getVet());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.get().", e);
+            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.save().", e);
         }
     }
 
@@ -97,7 +102,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
             statement.setLong(7, appointmentSchedule.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.get().", e);
+            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.update().", e);
         }
 
         System.out.println(sql);
@@ -112,7 +117,7 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
             statement.setString(1, Long.toString(appointmentSchedule.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.get().", e);
+            Logger.getLogger(AppointmentScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentScheduleDao.delete().", e);
         }
     }
 
@@ -122,10 +127,10 @@ public class AppointmentScheduleDao implements Dao<AppointmentSchedule> {
 //        appointmentSchedule.set(result.getObject("time"));
         appointmentSchedule.setSymptoms(result.getString("symptoms"));
         appointmentSchedule.setPerformed(result.getBoolean("performed"));
-//        appointmentSchedule.setAppointment(result.getObject("appointment"));
-//        appointmentSchedule.setAnimal(result.getObject("animal"));
-//        appointmentSchedule.setVet(result.getObject("vet"));
-
+        appointmentSchedule.setAppointment(appointmentDao.get(result.getLong("appointment_id")));
+        appointmentSchedule.setAnimal(animalDao.get(result.getLong("animal")));
+        appointmentSchedule.setVet(vetDao.get(result.getLong("id_vet")));
+        appointmentSchedule.setOrder(orderDao.get(result.getLong("order_id")));
         return appointmentSchedule;
     }
 }

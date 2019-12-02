@@ -26,7 +26,7 @@ public class ProductDao implements Dao<Product>{
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createProductByResult(result);

@@ -25,7 +25,7 @@ public class ProcedureDao implements Dao<Procedure>{
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createProcedureByResult(result);
@@ -51,7 +51,7 @@ public class ProcedureDao implements Dao<Procedure>{
             }
             return procedureList;
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.get().", e);
+            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.getAll().", e);
         }
 
         return null;
@@ -67,7 +67,7 @@ public class ProcedureDao implements Dao<Procedure>{
             statement.setDouble(2, procedure.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.get().", e);
+            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.save().", e);
         }
     }
 
@@ -85,7 +85,7 @@ public class ProcedureDao implements Dao<Procedure>{
             statement.setLong(3, procedure.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.get().", e);
+            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.update().", e);
         }
     }
 
@@ -95,18 +95,18 @@ public class ProcedureDao implements Dao<Procedure>{
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(procedure.getId()));
+            statement.setLong(1, procedure.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.get().", e);
+            Logger.getLogger(ProcedureDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureDao.delete().", e);
         }
     }
 
     private Procedure createProcedureByResult(ResultSet result) throws SQLException {
         Procedure procedure = new Procedure();
         procedure.setId(result.getLong("id"));
-        procedure.setName(result.getString("street"));
-        procedure.setPrice(result.getDouble("number"));
+        procedure.setName(result.getString("name"));
+        procedure.setPrice(result.getDouble("price"));
         return procedure;
     }
 }

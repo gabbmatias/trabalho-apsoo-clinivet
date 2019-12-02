@@ -26,7 +26,7 @@ public class AppointmentDao implements Dao<Appointment> {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return creatAppointmentByResult(result);
@@ -52,7 +52,7 @@ public class AppointmentDao implements Dao<Appointment> {
             }
             return appointmentList;
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.get().", e);
+            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.getAll().", e);
         }
 
         return null;
@@ -68,7 +68,7 @@ public class AppointmentDao implements Dao<Appointment> {
             statement.setDouble(2, appointment.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.get().", e);
+            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.save().", e);
         }
     }
 
@@ -85,7 +85,7 @@ public class AppointmentDao implements Dao<Appointment> {
             statement.setDouble(2, appointment.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.get().", e);
+            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.update().", e);
         }
 
         System.out.println(sql);
@@ -100,7 +100,7 @@ public class AppointmentDao implements Dao<Appointment> {
             statement.setString(1, Long.toString(appointment.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.get().", e);
+            Logger.getLogger(AppointmentDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no AppointmentDao.delete().", e);
         }
     }
 
