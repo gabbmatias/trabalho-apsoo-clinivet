@@ -8,6 +8,8 @@ public class ProcedureSchedule {
     boolean performed;
     Procedure procedure;
     Animal animal;
+    Order order;
+
 
     public ProcedureSchedule() {
     }
@@ -66,5 +68,13 @@ public class ProcedureSchedule {
 
     public void setAnimal(Animal animal) {
         this.animal = animal;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

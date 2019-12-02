@@ -70,7 +70,7 @@ public class VetDao implements Dao<Vet> {
             statement.setString(1, vet.getCrmv());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.save().", e);
         }
     }
 
@@ -85,7 +85,7 @@ public class VetDao implements Dao<Vet> {
             statement.setString(1, vet.getCrmv());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.update().", e);
         }
 
         System.out.println(sql);
@@ -97,10 +97,10 @@ public class VetDao implements Dao<Vet> {
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(vet.getId()));
+            statement.setLong(1, vet.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.create().", e);
+            Logger.getLogger(VetDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no VetDao.delete().", e);
         }
     }
 

@@ -20,12 +20,16 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
 
     private final String table = "procedure_schedule";
 
+    AnimalDao animalDao = new AnimalDao();
+    ProcedureDao procedureDao = new ProcedureDao();
+    OrderDao orderDao = new OrderDao();
+
     @Override
     public ProcedureSchedule get(long id) {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createProcedureScheduleByResult(result);
@@ -51,7 +55,7 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
             }
             return procedureScheduleList;
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.get().", e);
+            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.getAll().", e);
         }
 
         return null;
@@ -70,7 +74,7 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
             statement.setObject(4, procedureSchedule.getAnimal());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.get().", e);
+            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.save().", e);
         }
     }
 
@@ -92,7 +96,7 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
             statement.setLong(5, procedureSchedule.getId());
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.get().", e);
+            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.update().", e);
         }
 
         System.out.println(sql);
@@ -107,17 +111,19 @@ public class ProcedureScheduleDao implements Dao<ProcedureSchedule> {
             statement.setString(1, Long.toString(procedureSchedule.getId()));
             statement.execute();
         } catch (SQLException e) {
-            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.get().", e);
+            Logger.getLogger(ProcedureScheduleDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no ProcedureScheduleDao.delete().", e);
         }
     }
 
     private ProcedureSchedule createProcedureScheduleByResult(ResultSet result) throws SQLException {
         ProcedureSchedule procedureSchedule = new ProcedureSchedule();
         procedureSchedule.setId(result.getLong("id"));
-//        procedureSchedule.setTime(result.getObject("street"));
-        procedureSchedule.setPerformed(result.getBoolean("number"));
-//        procedureSchedule.setProcedure(result.getObject("complement"));
-//        procedureSchedule.setAnimal(result.getObject("zipcode"));
+//      procedureSchedule.setDate(result.getObject("date));
+        procedureSchedule.setPerformed(result.getBoolean("performed"));
+        procedureSchedule.setAnimal(animalDao.get(result.getLong("animal_id")));
+        procedureSchedule.setProcedure(procedureDao.get(result.getLong("procedure_id")));
+        procedureSchedule.setOrder(orderDao.get(result.getLong("order_id")));
+        procedureSchedule.
         return procedureSchedule;
     }
 }

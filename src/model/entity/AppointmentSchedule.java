@@ -10,6 +10,7 @@ public class AppointmentSchedule {
     Appointment appointment;
     Animal animal;
     Vet vet;
+    Order order;
 
     public AppointmentSchedule() {
     }
@@ -86,6 +87,14 @@ public class AppointmentSchedule {
 
     public void setVet(Vet vet) {
         this.vet = vet;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
 }
