@@ -38,7 +38,7 @@ public class SpeciesDao implements Dao<Species> {
 
     @Override
     public List<Species> getAll() {
-        String sql = "SELECT * FROM " + table ";";
+        String sql = "SELECT * FROM " + table + ";";
 
         List<Species> speciesList= new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class SpeciesDao implements Dao<Species> {
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(Species.getId()));
+            statement.setLong(1, species.getId());
             statement.execute();
         } catch (SQLException e) {
             Logger.getLogger(SpeciesDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no Species.delete().", e);

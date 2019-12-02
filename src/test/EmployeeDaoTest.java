@@ -11,7 +11,9 @@ public class EmployeeDaoTest {
         EmployeeDao dao = new EmployeeDao();
         dao.setConnection(connection);
 
-        Employee employee = dao.get(2);
+        //Employee employee = dao.get(1);
+
+        Employee employee = dao.get("paulo", "teste");
 
         System.out.println(employee.getName());
         System.out.println(employee.getAddress().getStreet());

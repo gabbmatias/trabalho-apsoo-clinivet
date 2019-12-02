@@ -29,7 +29,24 @@ public class EmployeeDao implements Dao<Employee> {
         String sql = "SELECT * FROM " + table + " WHERE id = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, Long.toString(id));
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return createEmployeeByResult(result);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(EmployeeDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no EmployeeDao.get().", e);
+        }
+
+        return null;
+    }
+
+    public Employee get(String login, String password){
+        String sql = "SELECT * FROM " + table + " WHERE login = ? AND password = ?;";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, login);
+            statement.setString(2, password);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 return createEmployeeByResult(result);

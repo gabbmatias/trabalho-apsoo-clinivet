@@ -75,13 +75,14 @@ public class CustomerDao implements Dao<Customer> {
     }
     @Override
     public void update(Customer customer) {
-        String sql = "UPDATE " + table + " SET " +
-                + " cpf = ?, " +
+        String sql = "UPDATE " + table + " SET "
+                + " cpf = ?, "
                 + " name = ?, "
                 + " email = ?, "
-                + " phone = ?, " +
+                + " phone = ?, "
                 + " mobile = ?, "
                 + " WHERE id = ?;";
+
 
          try {
              PreparedStatement statement = connection.prepareStatement(sql);
