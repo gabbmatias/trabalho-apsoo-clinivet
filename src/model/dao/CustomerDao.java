@@ -52,13 +52,12 @@ public class CustomerDao implements Dao<Customer> {
         } catch (SQLException e) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, "Problema ocorrido no CustomerDao.getAll().", e);
         }
-
         return null;
     }
 
     @Override
     public void save(Customer customer) {
-        String sql = "INSERT INTO + table +"(cpf, name, email, phone, mobile, address_id) VALUES(?, ?, ?, ?, ?, ?);", table);
+        String sql = "INSERT INTO " + table +"(cpf, name, email, phone, mobile, address_id) VALUES(?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, customer.getCpf());
